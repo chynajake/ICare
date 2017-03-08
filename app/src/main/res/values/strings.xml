@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ICare</string>
+    <string name="title_activity_patient_applications_new">PatientApplicationsNewActivity</string>
+    <string name="item1"></string>
+    <string name="item2"></string>
+    <string name="item3"></string>
+    <string name="newApps">Новые</string>
+    <string name="approvedApps">Подтвержденные</string>
+    <string name="myApps">Мои Заявки</string>
 </resources>
