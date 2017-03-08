@@ -6,16 +6,16 @@
     android:orientation="horizontal"
     android:layout_height="fill_parent">
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="match_parent"
-        android:minWidth="400dp"
+        android:minHeight="150dp"
         android:layout_weight="1"
         android:background="@drawable/background_app_left_item"
         >
         <ImageView
             android:id="@+id/typeIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:paddingTop="10dp"
             android:src="@drawable/doctoroncall"
             android:layout_centerHorizontal="true"/>
@@ -26,6 +26,9 @@
             android:text="Вызов Врача \n на дом"
             android:textColor="#D94E1686"
             android:textSize="12sp"
+            android:textAlignment="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_below="@id/typeIcon"/>
 
         <TextView
@@ -35,6 +38,9 @@
             android:text="16 декабря \n 09:30 - 10:30"
             android:textSize="12sp"
             android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="3dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -46,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:minWidth="400dp">
+        android:minHeight="150dp">
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -54,8 +60,11 @@
             android:text="Здесь будет надоевший вам симптом"
             android:textColor="#4E1686"
             android:textSize="16sp"
+            android:gravity="start"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
             android:layout_toStartOf="@+id/trash"
             android:layout_toLeftOf="@+id/trash" />
 
@@ -76,7 +85,8 @@
             android:layout_marginBottom="5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/response"
@@ -97,6 +107,7 @@
             android:layout_height="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

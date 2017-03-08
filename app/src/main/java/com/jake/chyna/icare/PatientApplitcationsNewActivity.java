@@ -2,6 +2,7 @@ package com.jake.chyna.icare;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ArrayAdapter;
@@ -50,8 +51,10 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
         Log.d("MyLOGS", jObject.toString());
         appData = new ArrayList<Map<String, String>>();
 
-        String [] groupFrom = new String[] {"type", "title", "date", "area", "price", "response"};
-        int groupTo[] = new int[] {R.id.type, R.id.title, R.id.date, R.id.area, R.id.price, R.id.response};
+        String [] from = {"type", "title",
+                "date", "area", "price", "response", "icon"};
+        int to[] = {R.id.type, R.id.title,
+                R.id.date, R.id.area, R.id.price, R.id.response, R.id.typeIcon};
 
 
         try {
@@ -59,26 +62,33 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
             JSONArray arr = jObject.getJSONArray("Applications");
             Log.d("MyLogs", arr.toString());
             for(int i = 0; i < arr.length(); i++) {
-                Log.d("MyLogs", "Inside FOR cycle");
-                Log.d("MyLogs", "Our JSON OBJECT: " + arr.getJSONObject(i));
+
                 m = new HashMap<String, String>();
                 m.put("type", arr.getJSONObject(i).get("type").toString());
                 m.put("title", arr.getJSONObject(i).get("title").toString());
                 m.put("date", arr.getJSONObject(i).get("date").toString());
-                m.put("area", arr.getJSONObject(i).get("area").toString());
+                if(!arr.getJSONObject(i).get("area").toString().equals("")) {
+                    m.put("area", Html.fromHtml("<p><font color=&quot;#4E1686&quot;>Район(ы): </font></p>" + arr.getJSONObject(i).get("area").toString()).toString());
+                }else {
+                    m.put("area", "");
+                }
                 m.put("price", arr.getJSONObject(i).get("price").toString() + " тг");
-                Log.d("MyLogs", m.toString());
                 m.put("response", arr.getJSONObject(i).get("response").toString() + " Отзывов");
+
+                String pi = arr.getJSONObject(i).get("pic_id").toString();
+                if(pi.equals("0")){
+                    m.put("icon", R.drawable.doctoroncall+"");
+                }else if(pi.equals("1")){
+                    m.put("icon", R.drawable.doctorhour+"");
+                }else if(pi.equals("2")){
+                    m.put("icon", R.drawable.procedures +"");
+                }
+                Log.d("MyLogs", m.toString());
+
                 appData.add(m);
                 Log.d("MyLogs", "Our map: " + m.toString());
 
-                String [] tags = arr.getJSONObject(i).get("tags").toString().split(" ");
 
-                ArrayAdapter<String> tagAdapter = new ArrayAdapter<String>(this, R.layout.item_application_new_tag,
-                        R.id.tag, tags);
-                GridView gv = (GridView) findViewById(R.id.tag_container);
-                gv.setAdapter(tagAdapter);
-                gv.setNumColumns(2);
 
             }
         } catch (JSONException e) {
@@ -88,8 +98,7 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
         SimpleAdapter adapter = new SimpleAdapter(
                 this,
                 appData,
-                R.layout.item_application_new,
-                groupFrom, groupTo);
+                R.layout.item_application_new, from, to);
         lv = (ListView) findViewById(R.id.applications);
         lv.setAdapter(adapter);
 
@@ -113,7 +122,7 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
             application1.put("title", "Гематома в мезинце");
             application1.put("tags", "Терапевт Хирург Костоправ");
             application1.put("date", "16 декабря 09:30 - 10:30");
-            application1.put("area", "Наурызбайский, Алматинский");
+            application1.put("area", "Наурызбайский, \n Алматинский");
             application1.put("price", "2500");
             application1.put("response", "25");
 
@@ -142,12 +151,12 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
         JSONObject application3 = new JSONObject();
         try {
             application3.put("id", "2");
-            application3.put("pic_id", "3");
+            application3.put("pic_id", "2");
             application3.put("type", "Обследование и анализы");
             application3.put("title", "Укол в голову на проверку мозга");
             application3.put("tags", "Обследование");
             application3.put("date", "16 декабря 11:30 - 12:30");
-            application3.put("area", "Наурызбайский, Алматинский");
+            application3.put("area", "Наурызбайский, \n Алматинский");
             application3.put("price", "8000");
             application3.put("response", "6");
 
