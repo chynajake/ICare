@@ -3,28 +3,34 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-
     >
-    <Button
-        android:id="@+id/newApplications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/newApps"
-        android:layout_toLeftOf="@id/approvedApplications"
-        android:layout_toStartOf="@id/approvedApplications"/>
-    <Button
+
+    <TextView
         android:id="@+id/approvedApplications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/approvedApps"
+        android:textColor="#686868"
+        android:layout_marginRight = "20dp"
+        android:layout_marginLeft = "20dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
+    <TextView
+        android:id="@+id/newApplications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newApps"
+        android:textColor="#4E1686"
+        android:layout_toLeftOf="@id/approvedApplications"
+        android:layout_toStartOf="@id/approvedApplications"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
-    <ListView
+    <ExpandableListView
         android:id="@+id/applications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/newApplications">
-    </ListView>
+    </ExpandableListView>
 
 </RelativeLayout>

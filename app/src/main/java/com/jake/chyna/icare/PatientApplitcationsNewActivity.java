@@ -2,6 +2,7 @@ package com.jake.chyna.icare;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -19,14 +20,19 @@ import java.util.Map;
 
 public class PatientApplitcationsNewActivity extends AppCompatActivity {
     JSONObject jObject = new JSONObject();
-    ListView apps;
+    ExpandableListView elv;
+
+    String [] apps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_applications_new);
         fillJson();
-        getActionBar().setTitle("Мои Заявки");
+        //getActionBar().setTitle("Мои Заявки");
+
+        Log.d("MyLOGS", jObject.toString());
+
 
     }
 

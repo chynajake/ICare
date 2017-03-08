@@ -9,18 +9,21 @@
         android:layout_height="match_parent"
         android:minWidth="200dp"
         android:layout_weight="1"
-        android:background="@drawable/background">
+        android:background="@drawable/background_app_left_item"
+        >
         <ImageView
             android:id="@+id/typeIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/doctoroncall"
             android:layout_centerHorizontal="true"/>
         <TextView
             android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Вызов Врача \n на дом"
+            android:textColor="#D94E1686"
             android:textSize="18sp"
             android:layout_below="@id/typeIcon"/>
 
@@ -31,6 +34,7 @@
             android:text="16 декабря \n 09:30 - 10:30"
             android:textSize="18sp"
             android:textColor="#FFFFFF"
+            android:layout_marginBottom="3dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -45,14 +49,14 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Здесь будет надоевший вам \n симптом"
-            android:textSize="18sp"/>
-        <ImageView
-            android:id="@+id/trash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/btn_minus"
-            android:layout_toRightOf="@id/title"/>
+            android:text="Здесь будет надоевший вам симптом"
+            android:textColor="#4E1686"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toStartOf="@+id/trash"
+            android:layout_toLeftOf="@+id/trash" />
+
         <RelativeLayout
             android:id="@+id/tag_container"
             android:layout_width="match_parent"
@@ -62,6 +66,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sometag"
+                android:textColor="#686868"
+                android:paddingRight="1dp"
+                android:paddingLeft="1dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:background="@drawable/tag_border"
                 android:textSize="18sp"/>
         </RelativeLayout>
 
@@ -70,7 +80,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Район(ы): Наурызбайский, \n Алматинский"
-            android:textSize="10sp"
+            android:textSize="12sp"
+            android:textColor="#868686"
+            android:layout_marginBottom="5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -80,8 +92,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="18 отзывов"
+            android:textColor="#4E1686"
             android:textSize="12sp"
+            android:layout_marginTop="2dp"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:id="@+id/trash"
+            android:src="@drawable/korzina"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
@@ -91,11 +116,15 @@
             android:layout_height="wrap_content"
             android:text="2500 тг"
             android:textSize="12sp"
-            android:layout_alignTop="@+id/area"
-            android:layout_alignLeft="@+id/response"
-            android:layout_alignStart="@+id/response"
-            android:layout_marginLeft="33dp"
-            android:layout_marginStart="33dp" />
+            android:textColor="#FFFFFF"
+            android:background="@drawable/border"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:layout_above="@+id/response"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
