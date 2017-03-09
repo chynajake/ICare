@@ -12,6 +12,11 @@
         android:layout_weight="1"
         android:background="@drawable/background_app_left_item"
         >
+        <TextView
+            android:id="@+id/app_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
         <ImageView
             android:id="@+id/typeIcon"
             android:layout_width="35dp"
@@ -72,7 +77,8 @@
             android:id="@+id/tag_container"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/title">
+            android:layout_below="@id/title"
+            android:numColumns="2">
         </GridView>
 
         <TextView

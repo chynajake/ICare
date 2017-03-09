@@ -1,15 +1,23 @@
 package com.jake.chyna.icare;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.R.attr.data;
 import static android.R.attr.tag;
 
 /**
@@ -39,7 +48,6 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
 
     ListView lv;
 
-    String [] apps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +59,9 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
         Log.d("MyLOGS", jObject.toString());
         appData = new ArrayList<Map<String, String>>();
 
-        String [] from = {"type", "title",
+        String [] from = {"app_id", "type", "title",
                 "date", "area", "price", "response", "icon"};
-        int to[] = {R.id.type, R.id.title,
+        int to[] = {R.id.app_id, R.id.type, R.id.title,
                 R.id.date, R.id.area, R.id.price, R.id.response, R.id.typeIcon};
 
 
@@ -64,11 +72,12 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
             for(int i = 0; i < arr.length(); i++) {
 
                 m = new HashMap<String, String>();
+                m.put("app_id", arr.getJSONObject(i).get("id").toString());
                 m.put("type", arr.getJSONObject(i).get("type").toString());
                 m.put("title", arr.getJSONObject(i).get("title").toString());
                 m.put("date", arr.getJSONObject(i).get("date").toString());
                 if(!arr.getJSONObject(i).get("area").toString().equals("")) {
-                    m.put("area", Html.fromHtml("<p><font color=&quot;#4E1686&quot;>Район(ы): </font></p>" + arr.getJSONObject(i).get("area").toString()).toString());
+                    m.put("area", "Районы: "+ arr.getJSONObject(i).get("area").toString());
                 }else {
                     m.put("area", "");
                 }
@@ -81,7 +90,7 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
                 }else if(pi.equals("1")){
                     m.put("icon", R.drawable.doctorhour+"");
                 }else if(pi.equals("2")){
-                    m.put("icon", R.drawable.procedures +"");
+                    m.put("icon", R.drawable.medtests +"");
                 }
                 Log.d("MyLogs", m.toString());
 
@@ -101,8 +110,36 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
                 R.layout.item_application_new, from, to);
         lv = (ListView) findViewById(R.id.applications);
         lv.setAdapter(adapter);
+        final Intent intent = new Intent(this, PatientApplicationsRespond.class);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                intent.putExtra("id", parent.findViewById(R.id.app_id).toString());
+                intent.putExtra("response", parent.findViewById(R.id.response).toString());
+                startActivity(intent);
+            }
+        });
 
 
+
+        class MyViewBinder implements SimpleAdapter.ViewBinder {
+
+            @Override
+            public boolean setViewValue(View view, Object data,
+                                        String textRepresentation) {
+                if(view.getId() == R.id.area){
+                    final SpannableStringBuilder sb = new SpannableStringBuilder(((TextView)view).getText().toString());
+                    // Span to set text color to some RGB value
+                    final ForegroundColorSpan fcs = new ForegroundColorSpan(Color.rgb(78, 22, 104));
+                    // Set the text color for first 4 characters
+                    sb.setSpan(fcs, 0, 7, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    ((TextView)view).setText(sb);
+                }
+
+                return false;
+            }
+        }
 
     }
 
