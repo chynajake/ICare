@@ -72,7 +72,7 @@
         android:id="@+id/pin2"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_below="@id/pin1"
+        android:layout_below="@+id/pin1"
         android:layout_toRightOf="@id/doctor_photo"
         android:src="@drawable/pin_icon"
         android:layout_marginBottom="5dp"
@@ -108,5 +108,15 @@
         android:layout_below="@+id/rating"
         android:layout_alignLeft="@+id/pin2"
         android:layout_alignStart="@+id/pin2" />
+    <TextView
+        android:id="@+id/doc_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/doc_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
 </RelativeLayout>

@@ -1,15 +1,9 @@
 package com.jake.chyna.icare;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -18,10 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -30,13 +20,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.R.attr.data;
-import static android.R.attr.tag;
+
 
 /**
  * Created by chyna on 3/8/17.
@@ -54,13 +43,23 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
 
 
     ListView lv;
-
+    TextView btn_new;
+    TextView btn_app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_applications_new);
         fillJson();
+        btn_new = (TextView) findViewById(R.id.newApplications);
+        btn_app = (TextView) findViewById(R.id.approvedApplications);
+        btn_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        btn_app.setTextColor(Color.parseColor("#868686"));
+        btn_new.setTextColor(Color.parseColor("#4E1668"));
         //getActionBar().setTitle("Мои Заявки");
 
         Log.d("MyLOGS", jObject.toString());
@@ -114,6 +113,7 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
                 this,
                 appData,
                 R.layout.item_application_new, from, to);
+        adapter.setViewBinder(new MyViewBinder());
         lv = (ListView) findViewById(R.id.applications);
         lv.setAdapter(adapter);
 
@@ -145,29 +145,24 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    class MyViewBinder implements SimpleAdapter.ViewBinder {
 
-
-
-
-        class MyViewBinder implements SimpleAdapter.ViewBinder {
-
-            @Override
-            public boolean setViewValue(View view, Object data,
-                                        String textRepresentation) {
-                if(view.getId() == R.id.area){
-                    final SpannableStringBuilder sb = new SpannableStringBuilder(((TextView)view).getText().toString());
-                    // Span to set text color to some RGB value
-                    final ForegroundColorSpan fcs = new ForegroundColorSpan(Color.rgb(78, 22, 104));
-                    // Set the text color for first 4 characters
-                    sb.setSpan(fcs, 0, 7, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                    ((TextView)view).setText(sb);
-                    return true;
-                }
-
-                return false;
+        @Override
+        public boolean setViewValue(View view, Object data,
+                                    String textRepresentation) {
+            if(view.getId() == R.id.area){
+                final SpannableStringBuilder sb = new SpannableStringBuilder(((TextView)view).getText().toString());
+                // Span to set text color to some RGB value
+                final ForegroundColorSpan fcs = new ForegroundColorSpan(Color.rgb(78, 22, 104));
+                // Set the text color for first 4 characters
+                sb.setSpan(fcs, 0, 7, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                ((TextView)view).setText(sb);
+                return true;
             }
-        }
 
+            return false;
+        }
     }
 
     @Override
