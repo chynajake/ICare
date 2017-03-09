@@ -1,7 +1,12 @@
 package com.jake.chyna.icare;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -10,11 +15,13 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -23,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +44,6 @@ import static android.R.attr.tag;
 
 public class PatientApplitcationsNewActivity extends AppCompatActivity {
     JSONObject jObject = new JSONObject();
-
 
 
     // коллекция для групп
@@ -70,7 +77,6 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
             JSONArray arr = jObject.getJSONArray("Applications");
             Log.d("MyLogs", arr.toString());
             for(int i = 0; i < arr.length(); i++) {
-
                 m = new HashMap<String, String>();
                 m.put("app_id", arr.getJSONObject(i).get("id").toString());
                 m.put("type", arr.getJSONObject(i).get("type").toString());
@@ -110,16 +116,36 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
                 R.layout.item_application_new, from, to);
         lv = (ListView) findViewById(R.id.applications);
         lv.setAdapter(adapter);
-        final Intent intent = new Intent(this, PatientApplicationsRespond.class);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                intent.putExtra("id", parent.findViewById(R.id.app_id).toString());
-                intent.putExtra("response", parent.findViewById(R.id.response).toString());
+                Intent intent = new Intent(getApplicationContext(), PatientApplicationsRespond.class);
+                Log.d("MYLOGS_VIEW_TOSTR", view.toString()+"");
+                Log.d("MYLOGS_VIEW_POSIT", position+"");
+                Log.d("MYLOGS_VIEW_londid", id+"");
+                Log.d("MYLOGS_VIEW_id", view.getId()+"");
+                Log.d("MYLOGS_APPDATA", appData.toString());
+                Map targetRecord = appData.get((int)id);
+                intent.putExtra("title", (String)targetRecord.get("title"));
+                intent.putExtra("area", (String)targetRecord.get("area"));
+                intent.putExtra("price", (String)targetRecord.get("price"));
+                intent.putExtra("response", (String)targetRecord.get("response"));
+                intent.putExtra("id", (String)targetRecord.get("app_id"));
+                intent.putExtra("type", (String)targetRecord.get("type"));
+                intent.putExtra("date", (String)targetRecord.get("date"));
+                intent.putExtra("icon", (String)targetRecord.get("icon"));
+                //intent.putExtra("image", ((ImageView)view.findViewById(R.id.typeIcon)).getDrawable()..toString());
+                /*Drawable d = ((ImageView)view.findViewById(R.id.typeIcon)).getDrawable();
+                Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] bitmapdata = stream.toByteArray();*/
+
                 startActivity(intent);
             }
         });
+
 
 
 
@@ -135,6 +161,7 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
                     // Set the text color for first 4 characters
                     sb.setSpan(fcs, 0, 7, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                     ((TextView)view).setText(sb);
+                    return true;
                 }
 
                 return false;
@@ -145,8 +172,10 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+        menu.add(0, 0, 0, "")
+                .setIcon(R.drawable.menu_icon)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return super.onCreateOptionsMenu(menu);
     }
 
     //// Pretend json were recieved here
