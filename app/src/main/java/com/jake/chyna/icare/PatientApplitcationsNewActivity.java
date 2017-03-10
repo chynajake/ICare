@@ -53,9 +53,11 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
         fillJson();
         btn_new = (TextView) findViewById(R.id.newApplications);
         btn_app = (TextView) findViewById(R.id.approvedApplications);
-        btn_new.setOnClickListener(new View.OnClickListener() {
+        btn_app.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), PatientApplicationsApproved.class);
+                startActivity(in);
             }
         });
         btn_app.setTextColor(Color.parseColor("#868686"));

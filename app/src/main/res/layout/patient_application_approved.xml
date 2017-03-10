@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    >
+
+    <TextView
+        android:id="@+id/appr_approvedApplications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/approvedApps"
+        android:textColor="#686868"
+        android:layout_marginRight = "20dp"
+        android:layout_marginLeft = "20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/appr_newApplications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newApps"
+        android:textColor="#4E1686"
+        android:layout_toLeftOf="@id/appr_approvedApplications"
+        android:layout_toStartOf="@id/appr_approvedApplications"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <ExpandableListView
+        android:id="@+id/appr_applications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="500dp"
+        android:layout_below="@id/appr_newApplications">
+    </ExpandableListView>
+
+</RelativeLayout>

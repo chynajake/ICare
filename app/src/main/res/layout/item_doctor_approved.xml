@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp">
+    <ImageView
+        android:id="@+id/doctor_photo"
+        android:layout_width="121dp"
+        android:layout_height="170dp"
+        android:src="@drawable/house"
+        android:layout_marginRight="5dp"/>
+    <TextView
+        android:id="@+id/doctor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Грегорий Хаус"
+        android:textColor="#868686"
+        android:layout_toRightOf="@id/doctor_photo"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+
+        />
+    <GridView
+        android:id="@+id/doc_tag_container"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/doctor_name"
+        android:layout_toRightOf="@id/doctor_photo"
+        android:numColumns="2"
+        android:layout_marginBottom="5dp">
+    </GridView>
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doc_tag_container"
+        android:layout_alignParentRight="true"
+        android:text="RATING HERE!"
+        android:layout_marginRight="10dp"/>
+
+    <ImageView
+        android:id="@+id/pin2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/pin1"
+        android:layout_toRightOf="@id/doctor_photo"
+        android:src="@drawable/pin_icon"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/pin_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Науаи 68"
+        android:textColor="#868686"
+        android:layout_alignBottom="@+id/pin2"
+        android:layout_toRightOf="@+id/pin2"
+        android:layout_toEndOf="@+id/pin2" />
+
+    <TextView
+        android:id="@+id/pin_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Науаи 68"
+        android:textColor="#868686"
+        android:layout_alignBottom="@+id/pin1"
+        android:layout_toRightOf="@+id/pin1"
+        android:layout_toEndOf="@+id/pin1" />
+
+    <ImageView
+        android:id="@+id/pin1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/pin_icon"
+        android:layout_below="@+id/rating"
+        android:layout_alignLeft="@+id/pin2"
+        android:layout_alignStart="@+id/pin2" />
+    <TextView
+        android:id="@+id/doc_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/doc_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_write"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:background="@drawable/border"
+        android:text="Написать"
+        android:textSize="10sp"
+        android:textColor="#FFFFFF"
+        android:layout_alignTop="@+id/pin_text2"
+        android:layout_alignRight="@+id/rating"
+        android:layout_alignEnd="@+id/rating" />
+
+</RelativeLayout>

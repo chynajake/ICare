@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PatientApplicationsRespond"></activity>
+        <activity android:name=".PatientApplicationsApproved"></activity>
     </application>
 
 </manifest>
