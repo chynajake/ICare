@@ -255,6 +255,7 @@ public class PatientApplitcationsNewActivity extends AppCompatActivity {
 
         try {
             jObject.put("Applications", jsonArray);
+            Log.d("MYJSONARRAY", jObject.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

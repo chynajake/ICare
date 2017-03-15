@@ -11,5 +11,5 @@
     android:paddingBottom="2dp"
     android:paddingTop="2dp"
     android:background="@drawable/tag_border"
-    android:textSize="18sp">
+    android:textSize="15sp">
 </TextView>
